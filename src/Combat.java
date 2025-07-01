@@ -16,11 +16,13 @@ public class Combat {
         Player target = null;
         int minDistance = 99999;
         for (Player otherPlayer : otherPlayers) {
-            if (otherPlayer.getHealth() > 0) {
-                int distance = PathUtils.distance(player, otherPlayer);
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    target = otherPlayer;
+            if (PathUtils.checkInsideSafeArea(otherPlayer , gameMap.getSafeZone() , gameMap.getMapSize())) {
+                if (otherPlayer.getHealth() > 0) {
+                    int distance = PathUtils.distance(player, otherPlayer);
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        target = otherPlayer;
+                    }
                 }
             }
         }

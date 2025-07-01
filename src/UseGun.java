@@ -34,16 +34,18 @@ public class UseGun {
         double minDistance = Double.MAX_VALUE;
 
         for (Weapon gun : guns) {
-            double distance = PathUtils.distance(player, gun);
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearestGun = gun;
+            if ( PathUtils.checkInsideSafeArea(gun , gameMap.getSafeZone() , gameMap.getMapSize())) {
+                double distance = PathUtils.distance(player, gun);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestGun = gun;
+                }
             }
         }
         return nearestGun;
     }
     // End tim sung
 
-    // Ban chuan
+
 
 }

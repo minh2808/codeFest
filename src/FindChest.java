@@ -29,10 +29,12 @@ public class FindChest {
         double minDistance = Double.MAX_VALUE;
 
         for (Obstacle chest : listOfChest) {
-            double distance = PathUtils.distance(player, chest);
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearestChest = chest;
+            if (PathUtils.checkInsideSafeArea(chest , gameMap.getSafeZone() , gameMap.getMapSize())) {
+                double distance = PathUtils.distance(player, chest);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestChest = chest;
+                }
             }
         }
 
